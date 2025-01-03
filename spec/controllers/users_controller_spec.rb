@@ -37,6 +37,13 @@ let(:user) {create(:user)}
 		  expect(response.status).to eq(422)
 		  expect(json['email']).to eq("Email is wrong")
 		end
+
+		it "when password is wrong" do 
+		  post :login, params:{email: user.email, password: "j hbshd c"}
+
+		  expect(response.status).to eq(422)
+		  expect(json['password']).to eq("password is wrong")
+		end
 	end
 		
 	
