@@ -30,6 +30,13 @@ let(:user) {create(:user)}
 		  expect(response.status).to eq(200)
 		  expect(json['message']).to eq("Successfully loged in") 
 		end
+
+		it "when entered email is not found" do
+		  post :login, params: {email: "example@gmail.com"}
+
+		  expect(response.status).to eq(422)
+		  expect(json['email']).to eq("Email is wrong")
+		end
 	end
 		
 	
