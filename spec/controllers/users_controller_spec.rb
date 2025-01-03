@@ -32,17 +32,24 @@ let(:user) {create(:user)}
 		end
 
 		it "when entered email is not found" do
-		  post :login, params: {email: "example@gmail.com"}
+		  post :login, params: {email: "example@gmail.com", password: "ahbchv"}
 
 		  expect(response.status).to eq(422)
-		  expect(json['email']).to eq("Email is wrong")
+		  expect(json['message']).to eq("Email is wrong")
 		end
 
 		it "when password is wrong" do 
 		  post :login, params:{email: user.email, password: "j hbshd c"}
 
 		  expect(response.status).to eq(422)
-		  expect(json['password']).to eq("password is wrong")
+		  expect(json['message']).to eq("password is wrong")
+		end
+
+		it "when email or password is not passed" do 
+		  post :login
+
+		  expect(response.status).to eq(422)
+		  expect(json['message']).to eq("Email and Password must be present")
 		end
 	end
 		
