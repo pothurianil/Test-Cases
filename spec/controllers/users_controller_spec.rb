@@ -22,6 +22,15 @@ let(:user) {create(:user)}
       expect(json['errors']['email']).to eq(['email is not a valid formate'])
     end
 	end
+
+	describe "Login" do 
+		it "when loged in Successfully" do 
+		  post: login, params:{email: user.email, password: "Password@123"}
+
+		  expect(response.status).to eq(200)
+		  expect(json['message']).to eq("Successfully loged in") 
+		end
+	end
 		
 	
 end
