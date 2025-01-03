@@ -23,3 +23,4 @@ Things you may want to cover:
 
 * ...
 1) Installing require gems for the test cases
+2) Creating the require files for user table
